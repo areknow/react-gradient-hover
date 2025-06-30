@@ -143,7 +143,6 @@ The component uses CSS custom properties internally, which are set from the prop
 
 This component uses modern CSS features including:
 - CSS custom properties
-- `color-mix()` function
 - `inset` property
 
 Make sure your target browsers support these features or provide appropriate fallbacks.
