@@ -4,6 +4,7 @@ A React component that creates an interactive gradient effect following mouse mo
 
 [![npm version](https://img.shields.io/npm/v/react-gradient-hover.svg)](https://www.npmjs.com/package/react-gradient-hover)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Demo-blue)](https://areknow.github.io/react-gradient-hover/)
 
 ## Features
 
@@ -25,6 +26,10 @@ or
 ```bash
 yarn add react-gradient-hover
 ```
+
+## Live Demo
+
+Check out the [live demo](https://areknow.github.io/react-gradient-hover/) to see the component in action!
 
 ## Usage
 
@@ -186,6 +191,28 @@ This starts a development server with the example app at `http://localhost:5173`
 ```bash
 npm run example:build
 ```
+
+### GitHub Pages Deployment
+
+The example site is automatically deployed to GitHub Pages when you push to the `main` branch. The deployment is handled by GitHub Actions.
+
+#### Manual deployment
+
+If you need to deploy manually:
+
+1. Build the example site:
+   ```bash
+   npm run example:build
+   ```
+
+2. The built files will be in the `example-dist/` directory
+
+3. You can then upload these files to GitHub Pages through your repository settings
+
+#### GitHub Pages URL
+
+Once deployed, your example site will be available at:
+`https://areknow.github.io/react-gradient-hover/`
 
 ### Code Quality
 

@@ -17,4 +17,5 @@ module.exports = defineConfig({
   build: {
     outDir: path.resolve(__dirname, "example-dist"),
   },
+  base: process.env.NODE_ENV === "production" ? "/react-gradient-hover/" : "/",
 });
