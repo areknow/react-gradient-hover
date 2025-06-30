@@ -31,11 +31,11 @@
     "interactive",
     "ui"
   ],
-  "author": "",
+  "author": "areknow",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/areknow/react-gradient-hover.git"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
