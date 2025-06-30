@@ -1,6 +1,6 @@
 {
   "name": "react-gradient-hover",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A React component that creates an interactive gradient effect following mouse movement on hover",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
