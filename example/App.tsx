@@ -22,21 +22,21 @@ function App() {
         </GradientHover>
 
         {/* Custom Colors */}
-        <GradientHover colors={["#667eea", "#764ba2"]}>
+        <GradientHover colors={["#667eea", "#BE1020"]}>
           <div
             style={{
               padding: "2rem",
               textAlign: "center",
             }}
           >
-            <h2>Purple Gradient</h2>
-            <p>Custom gradient colors</p>
+            <h2>Custom Gradient</h2>
+            <p>Use any two colors you want!</p>
           </div>
         </GradientHover>
 
         {/* Faster Animation & Custom Styling */}
         <GradientHover
-          colors={["#f093fb", "#f5576c"]}
+          colors={["#FAD465", "#FF60C7"]}
           animationSpeed={0.05}
           borderRadius="20px"
           transitionDuration={0.5}
@@ -73,7 +73,10 @@ function App() {
         </GradientHover>
 
         {/* Always Show Gradient */}
-        <GradientHover shouldAlwaysShowGradient={false}>
+        <GradientHover
+          shouldAlwaysShowGradient={false}
+          colors={["#BB4FC0", "#4C58CE"]}
+        >
           <div
             style={{
               padding: "2rem",
