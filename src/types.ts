@@ -55,4 +55,10 @@ export interface GradientHoverProps {
    * @default 0.05
    */
   activeOverlayOpacity?: number;
+
+  /**
+   * Whether to always show the gradient hover effect
+   * @default true
+   */
+  shouldAlwaysShowGradient?: boolean;
 }

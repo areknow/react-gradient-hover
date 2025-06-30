@@ -9,6 +9,7 @@ import React, {
 import debounce from "lodash.debounce";
 import { GradientHoverProps } from "./types";
 import "./GradientHover.scss";
+import classNames from "classnames";
 
 const GradientHover: React.FC<GradientHoverProps> = ({
   colors = ["#ff6b6b", "#4ecdc4"],
@@ -21,6 +22,7 @@ const GradientHover: React.FC<GradientHoverProps> = ({
   borderRadius = "10px",
   transitionDuration = 1,
   activeOverlayOpacity = 0.05,
+  shouldAlwaysShowGradient = true,
 }) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const [isHovering, setIsHovering] = useState(false);
@@ -204,16 +206,19 @@ const GradientHover: React.FC<GradientHoverProps> = ({
   return (
     <div
       ref={ref}
-      className={`gradient-hover ${
-        isHovering ? "gradient-hover--is-hovering" : ""
-      } ${className}`}
+      className={classNames(
+        "gradient-hover",
+        isHovering && "gradient-hover--is-hovering",
+        shouldAlwaysShowGradient && "gradient-hover--always-show",
+        className
+      )}
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={onClick}
-      style={{ width: "100%", ...colorStyles, ...dynamicStyles, ...style }}
+      style={{ ...colorStyles, ...dynamicStyles, ...style }}
     >
-      {children}
+      <div className="gradient-hover__content">{children}</div>
     </div>
   );
 };

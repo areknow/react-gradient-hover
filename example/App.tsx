@@ -1,4 +1,3 @@
-import React from "react";
 import { GradientHover } from "react-gradient-hover";
 
 function App() {
@@ -13,7 +12,6 @@ function App() {
             style={{
               padding: "2rem",
               textAlign: "center",
-              background: "#f5f5f5",
             }}
           >
             <h2>Basic Gradient Hover</h2>
@@ -29,7 +27,6 @@ function App() {
             style={{
               padding: "2rem",
               textAlign: "center",
-              background: "#f5f5f5",
             }}
           >
             <h2>Purple Gradient</h2>
@@ -49,30 +46,12 @@ function App() {
             style={{
               padding: "2rem",
               textAlign: "center",
-              background: "#f5f5f5",
             }}
           >
             <h2>Faster Animation & Custom Styling</h2>
             <p>
               Faster movement, quicker transition, more visible click effect!
             </p>
-          </div>
-        </GradientHover>
-
-        {/* Click Handler */}
-        <GradientHover
-          colors={["#4facfe", "#00f2fe"]}
-          onClick={() => alert("Clicked!")}
-        >
-          <div
-            style={{
-              padding: "2rem",
-              textAlign: "center",
-              background: "#f5f5f5",
-            }}
-          >
-            <h2>Clickable</h2>
-            <p>Click me!</p>
           </div>
         </GradientHover>
 
@@ -86,11 +65,23 @@ function App() {
             style={{
               padding: "2rem",
               textAlign: "center",
-              background: "#f5f5f5",
             }}
           >
             <h2>Slow Transition</h2>
             <p>3-second gradient transition for a smooth effect</p>
+          </div>
+        </GradientHover>
+
+        {/* Always Show Gradient */}
+        <GradientHover shouldAlwaysShowGradient={false}>
+          <div
+            style={{
+              padding: "2rem",
+              textAlign: "center",
+            }}
+          >
+            <h2>Always Show Gradient</h2>
+            <p>The gradient will always not be visible until hovered</p>
           </div>
         </GradientHover>
       </div>
