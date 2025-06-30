@@ -1,5 +1,5 @@
 import React from "react";
-import { GradientHover } from "../src";
+import { GradientHover } from "react-gradient-hover";
 
 function App() {
   return (

@@ -16,9 +16,12 @@
     "jsx": "react-jsx",
     "declaration": true,
     "declarationMap": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "paths": {
+      "react-gradient-hover": ["./src/index.ts"]
+    }
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "example/**/*"],
   "exclude": [
     "node_modules",
     "dist",
