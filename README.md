@@ -149,47 +149,170 @@ Make sure your target browsers support these features or provide appropriate fal
 
 ## Development
 
+### Prerequisites
+
+- Node.js (version 16 or higher)
+- npm or yarn
+
 ### Install dependencies
 
 ```bash
 npm install
 ```
 
-### Build the package
+### Development Workflow
+
+#### Build the package
 
 ```bash
 npm run build
 ```
 
-### Run the example in development mode
+This creates the distribution files in the `dist/` directory:
+- `dist/index.js` - CommonJS bundle
+- `dist/index.esm.js` - ES Module bundle  
+- `dist/index.d.ts` - TypeScript declarations
+
+#### Run the example in development mode
 
 ```bash
 npm run example
 ```
 
-### Run linting
+This starts a development server with the example app at `http://localhost:5173`
+
+#### Build the example for production
+
+```bash
+npm run example:build
+```
+
+### Code Quality
+
+#### Run linting
 
 ```bash
 npm run lint
 ```
 
-### Run linting with auto-fix
+#### Run linting with auto-fix
 
 ```bash
 npm run lint:fix
 ```
 
-### Format code
+#### Format code
 
 ```bash
 npm run format
 ```
 
-### Type checking
+#### Check formatting
+
+```bash
+npm run format:check
+```
+
+#### Type checking
 
 ```bash
 npm run typecheck
 ```
+
+### Testing Before Publishing
+
+#### Dry run package creation
+
+```bash
+npm pack --dry-run
+```
+
+This shows what files will be included in the published package without actually creating the tarball.
+
+#### Test the package locally
+
+```bash
+npm pack
+npm install ./react-gradient-hover-1.0.0.tgz
+```
+
+This creates a local tarball and installs it to test the package before publishing.
+
+### Publishing to npm
+
+#### 1. Login to npm (if not already logged in)
+
+```bash
+npm login
+```
+
+#### 2. Check if you're logged in
+
+```bash
+npm whoami
+```
+
+#### 3. Check if the package name is available
+
+```bash
+npm view react-gradient-hover
+```
+
+If you get a 404 error, the name is available. If you get package details, the name is taken.
+
+#### 4. Update version (if needed)
+
+```bash
+npm version patch  # 1.0.0 -> 1.0.1
+npm version minor  # 1.0.0 -> 1.1.0  
+npm version major  # 1.0.0 -> 2.0.0
+```
+
+#### 5. Build and publish
+
+```bash
+npm publish
+```
+
+This will automatically:
+- Run the build process (via `prepublishOnly` script)
+- Create the package tarball
+- Upload to npm registry
+
+#### 6. Verify the published package
+
+```bash
+npm view react-gradient-hover
+```
+
+### Publishing Checklist
+
+Before publishing, ensure:
+
+- [ ] All tests pass
+- [ ] Code is linted and formatted
+- [ ] TypeScript compilation succeeds
+- [ ] Example builds and runs correctly
+- [ ] README is up to date
+- [ ] Package.json has correct metadata (name, version, author, repository)
+- [ ] License file is present
+- [ ] No sensitive information in the package
+- [ ] Version number is appropriate for the changes
+
+### Troubleshooting
+
+#### Package name already taken
+If the package name is already taken, update the `name` field in `package.json` to something unique.
+
+#### Publishing fails
+- Ensure you're logged in: `npm whoami`
+- Check if you have permission to publish: `npm access ls-packages`
+- Verify the package name is available
+
+#### Build errors
+- Check that all dependencies are installed: `npm install`
+- Ensure TypeScript configuration is correct
+- Verify Rollup configuration is valid
 
 ## License
 
