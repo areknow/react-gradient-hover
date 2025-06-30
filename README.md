@@ -74,6 +74,20 @@ function App() {
 </GradientHover>
 ```
 
+### Hide Gradient Until Hover
+
+```tsx
+<GradientHover
+  colors={['#ff6b6b', '#4ecdc4']}
+  shouldAlwaysShowGradient={false}
+>
+  <div style={{ padding: '2rem' }}>
+    <h2>Hidden Gradient</h2>
+    <p>The gradient will only appear when you hover over this component</p>
+  </div>
+</GradientHover>
+```
+
 ## API
 
 ### Props
@@ -85,12 +99,12 @@ function App() {
 | `className` | `string` | `''` | Additional CSS classes to apply |
 | `style` | `CSSProperties` | `{}` | Inline styles to apply |
 | `onClick` | `() => void` | - | Click handler for the component |
-| `as` | `keyof JSX.IntrinsicElements \| React.ComponentType` | `'div'` | The HTML element or React component to render as |
 | `isActive` | `boolean` | `true` | Whether the gradient effect is active |
 | `animationSpeed` | `number` | `0.01` | Animation speed (0.01 = slower, 0.1 = faster) |
 | `borderRadius` | `string` | `'10px'` | Border radius of the component |
 | `transitionDuration` | `number` | `1` | Duration of the gradient transition animation in seconds |
 | `activeOverlayOpacity` | `number` | `0.05` | Opacity of the active overlay when clicking |
+| `shouldAlwaysShowGradient` | `boolean` | `true` | Whether to always show the gradient effect or only on hover |
 
 ## Styling
 
@@ -102,6 +116,8 @@ The component is fully customizable through props! All visual aspects can be con
   borderRadius="20px"
   transitionDuration={2}
   activeOverlayOpacity={0.1}
+  shouldAlwaysShowGradient={true}
+  animationSpeed={0.02}
 >
   {/* Your content */}
 </GradientHover>
@@ -146,16 +162,28 @@ npm install
 npm run build
 ```
 
-### Run in development mode
+### Run the example in development mode
 
 ```bash
-npm run dev
+npm run example
 ```
 
 ### Run linting
 
 ```bash
 npm run lint
+```
+
+### Run linting with auto-fix
+
+```bash
+npm run lint:fix
+```
+
+### Format code
+
+```bash
+npm run format
 ```
 
 ### Type checking
