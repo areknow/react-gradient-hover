@@ -1,15 +1,18 @@
 import React, {
-  useState,
-  useEffect,
-  useRef,
-  useCallback,
   CSSProperties,
   MouseEvent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
 } from "react";
-import debounce from "lodash.debounce";
-import { GradientHoverProps } from "./types";
-import "./GradientHover.scss";
+
 import classNames from "classnames";
+import debounce from "lodash.debounce";
+
+import { GradientHoverProps } from "./types";
+
+import "./GradientHover.scss";
 
 const GradientHover: React.FC<GradientHoverProps> = ({
   colors = ["#ff6b6b", "#4ecdc4"],
