@@ -8,7 +8,7 @@ import React, {
 } from "react";
 import debounce from "lodash.debounce";
 import { GradientHoverProps } from "./types";
-import "./GradientHover.css";
+import "./GradientHover.scss";
 
 const GradientHover: React.FC<GradientHoverProps> = ({
   colors = ["#ff6b6b", "#4ecdc4"],
@@ -19,6 +19,8 @@ const GradientHover: React.FC<GradientHoverProps> = ({
   isActive = true,
   animationSpeed = 0.01,
   borderRadius = "10px",
+  transitionDuration = 1,
+  activeOverlayOpacity = 0.05,
 }) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const [isHovering, setIsHovering] = useState(false);
@@ -41,6 +43,8 @@ const GradientHover: React.FC<GradientHoverProps> = ({
     "--gradient-stop-1": stop1,
     "--gradient-stop-2": stop2,
     "--border-radius": borderRadius,
+    "--transition-duration": `${transitionDuration}s`,
+    "--active-overlay-opacity": activeOverlayOpacity.toString(),
   } as CSSProperties;
 
   let dynamicStyles = {};

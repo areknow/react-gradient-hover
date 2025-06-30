@@ -43,4 +43,16 @@ export interface GradientHoverProps {
    * @default '10px'
    */
   borderRadius?: string;
+
+  /**
+   * Duration of the gradient transition animation in seconds
+   * @default 1
+   */
+  transitionDuration?: number;
+
+  /**
+   * Opacity of the active overlay when clicking
+   * @default 0.05
+   */
+  activeOverlayOpacity?: number;
 }

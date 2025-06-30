@@ -62,9 +62,10 @@ function App() {
   colors={['#667eea', '#764ba2']}
   animationSpeed={0.02}
   borderRadius="20px"
+  transitionDuration={0.5}
+  activeOverlayOpacity={0.1}
   className="my-custom-class"
   onClick={() => console.log('Clicked!')}
-  as="section"
 >
   <div style={{ padding: '3rem' }}>
     <h2>Advanced Configuration</h2>
@@ -88,19 +89,39 @@ function App() {
 | `isActive` | `boolean` | `true` | Whether the gradient effect is active |
 | `animationSpeed` | `number` | `0.01` | Animation speed (0.01 = slower, 0.1 = faster) |
 | `borderRadius` | `string` | `'10px'` | Border radius of the component |
+| `transitionDuration` | `number` | `1` | Duration of the gradient transition animation in seconds |
+| `activeOverlayOpacity` | `number` | `0.05` | Opacity of the active overlay when clicking |
 
 ## Styling
 
-The component uses CSS custom properties (CSS variables) for styling. You can override these in your CSS:
+The component is fully customizable through props! All visual aspects can be controlled by passing the appropriate props:
+
+```tsx
+<GradientHover
+  colors={['#custom-color-1', '#custom-color-2']}
+  borderRadius="20px"
+  transitionDuration={2}
+  activeOverlayOpacity={0.1}
+>
+  {/* Your content */}
+</GradientHover>
+```
+
+### Advanced CSS Customization
+
+If you need additional styling beyond the available props, you can target the component with CSS:
 
 ```css
 .gradient-hover {
-  /* Override default styles */
-  --gradient-stop-1: #your-color-1;
-  --gradient-stop-2: #your-color-2;
-  --border-radius: 15px;
+  /* Your custom styles */
+}
+
+.gradient-hover--is-hovering {
+  /* Styles applied during hover */
 }
 ```
+
+The component uses CSS custom properties internally, which are set from the props you pass.
 
 ## Browser Support
 

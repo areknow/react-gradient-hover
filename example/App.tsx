@@ -37,11 +37,13 @@ function App() {
           </div>
         </GradientHover>
 
-        {/* Faster Animation */}
+        {/* Faster Animation & Custom Styling */}
         <GradientHover
           colors={["#f093fb", "#f5576c"]}
           animationSpeed={0.05}
           borderRadius="20px"
+          transitionDuration={0.5}
+          activeOverlayOpacity={0.1}
         >
           <div
             style={{
@@ -50,8 +52,10 @@ function App() {
               background: "#f5f5f5",
             }}
           >
-            <h2>Faster Animation</h2>
-            <p>This gradient moves faster!</p>
+            <h2>Faster Animation & Custom Styling</h2>
+            <p>
+              Faster movement, quicker transition, more visible click effect!
+            </p>
           </div>
         </GradientHover>
 
@@ -69,6 +73,24 @@ function App() {
           >
             <h2>Clickable</h2>
             <p>Click me!</p>
+          </div>
+        </GradientHover>
+
+        {/* Slow Transition */}
+        <GradientHover
+          colors={["#11998e", "#38ef7d"]}
+          transitionDuration={3}
+          borderRadius="25px"
+        >
+          <div
+            style={{
+              padding: "2rem",
+              textAlign: "center",
+              background: "#f5f5f5",
+            }}
+          >
+            <h2>Slow Transition</h2>
+            <p>3-second gradient transition for a smooth effect</p>
           </div>
         </GradientHover>
       </div>

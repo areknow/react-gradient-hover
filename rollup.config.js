@@ -38,11 +38,12 @@ module.exports = [
         ],
       }),
       postcss({
-        extensions: [".css"],
+        extensions: [".css", ".scss"],
         minimize: true,
         modules: false,
         extract: false,
         inject: true,
+        use: ["sass"],
       }),
     ],
     external: ["react", "react-dom", "lodash.debounce"],
