@@ -30,6 +30,7 @@ The component supports multiple color stops. The more colors added, the higher t
 <GradientHover
   colors={["#E95A45", "#FCF2C1", "#539C99"]}
   style={{ marginBottom: 10 }}
+  animationSpeed={8}
 >
   <div style={{ padding: 20 }}>Three-color gradient</div>
 </GradientHover>
@@ -42,8 +43,8 @@ Use the controls below to dynamically experiment with all the component props:
 ```jsx
 function InteractiveDemo() {
   const [colors, setColors] = React.useState(["#0dc3e7", "#fc42ff", "#E6FB46"]);
-  const [animationSpeed, setAnimationSpeed] = React.useState(5);
-  const [transitionDuration, setTransitionDuration] = React.useState(1);
+  const [animationSpeed, setAnimationSpeed] = React.useState(9);
+  const [transitionDuration, setTransitionDuration] = React.useState(3);
   const [shouldAlwaysShowGradient, setShouldAlwaysShowGradient] =
     React.useState(true);
 
@@ -108,7 +109,7 @@ function InteractiveDemo() {
             </label>
             <input
               type="range"
-              min="0"
+              min="1"
               max="10"
               step="1"
               value={animationSpeed}

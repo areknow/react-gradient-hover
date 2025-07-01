@@ -22,7 +22,7 @@ const GradientHover: React.FC<GradientHoverProps> = ({
   className = "",
   style = {},
   onClick,
-  animationSpeed = 3,
+  animationSpeed = 5,
   transitionDuration = 1,
   shouldAlwaysShowGradient = true,
 }) => {
@@ -35,26 +35,27 @@ const GradientHover: React.FC<GradientHoverProps> = ({
     { top: number; left: number; width: number; height: number } | undefined
   >(undefined);
 
-  // Animation state for smooth trailing
+  // Animation state
   const targetPosition = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   const currentPosition = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   const animationFrame = useRef<number | undefined>(undefined);
   const isAnimatingToCenter = useRef(false);
   const isAnimationActive = useRef(false);
+  const lastTime = useRef<number>(0);
 
   // Ensure we have at least 2 colors for the gradient
   const validColors = colors && colors.length >= 2 ? colors : DEFAULT_COLORS;
 
-  // Convert user-friendly speed (1-10) to internal speed (0.01-0.1)
-  const internalAnimationSpeed =
-    Math.max(1, Math.min(10, animationSpeed)) * 0.01;
+  // Calculate smoothing speed using an exponential curve
+  // This gives us a nice progression from very slow to fast
+  const smoothingSpeed = 0.00025 * Math.pow(animationSpeed, 1.3);
 
-  // Generate gradient string for CSS
+  // Generate gradient string
   const generateGradient = (x: string, y: string) => {
     return `radial-gradient(circle at ${x} ${y}, ${validColors.join(", ")})`;
   };
 
-  // Generate CSS variables for all gradient stops
+  // CSS variables for gradient
   const colorStyles = {
     "--gradient-colors": validColors.join(", "),
     "--gradient-stop-last": validColors[validColors.length - 1],
@@ -74,7 +75,7 @@ const GradientHover: React.FC<GradientHoverProps> = ({
     } as CSSProperties;
   }
 
-  // Helper function to get fresh bounds
+  // Get fresh bounds for accurate positioning
   const getFreshBounds = useCallback(() => {
     if (ref.current) {
       const rect = ref.current.getBoundingClientRect();
@@ -92,41 +93,55 @@ const GradientHover: React.FC<GradientHoverProps> = ({
     return null;
   }, []);
 
-  // Continuous animation function - runs while hovering or animating to center
-  const animate = useCallback(() => {
-    if (!isAnimationActive.current) {
-      return;
-    }
-
-    const distX = targetPosition.current.x - currentPosition.current.x;
-    const distY = targetPosition.current.y - currentPosition.current.y;
-
-    // Check if we're close enough to the target to stop animating to center
-    if (
-      isAnimatingToCenter.current &&
-      Math.abs(distX) < 1 &&
-      Math.abs(distY) < 1
-    ) {
-      isAnimatingToCenter.current = false;
-      isAnimationActive.current = false;
-      setMousePosition(undefined);
-      if (animationFrame.current) {
-        cancelAnimationFrame(animationFrame.current);
-        animationFrame.current = undefined;
+  // Animation loop using exponential smoothing
+  const animate = useCallback(
+    (currentTime: number) => {
+      if (!isAnimationActive.current) {
+        return;
       }
-      return;
-    }
 
-    currentPosition.current.x += distX * internalAnimationSpeed;
-    currentPosition.current.y += distY * internalAnimationSpeed;
+      // Calculate delta time for frame-independent animation
+      const deltaTime = lastTime.current
+        ? Math.min((currentTime - lastTime.current) / 16.67, 2)
+        : 1;
+      lastTime.current = currentTime;
 
-    setMousePosition({
-      x: currentPosition.current.x,
-      y: currentPosition.current.y,
-    });
+      const distX = targetPosition.current.x - currentPosition.current.x;
+      const distY = targetPosition.current.y - currentPosition.current.y;
+      const distance = Math.sqrt(distX * distX + distY * distY);
 
-    animationFrame.current = requestAnimationFrame(animate);
-  }, [internalAnimationSpeed]);
+      // Stop animating when close to center
+      if (distance < 0.5 && isAnimatingToCenter.current) {
+        isAnimatingToCenter.current = false;
+        isAnimationActive.current = false;
+        setMousePosition(undefined);
+        if (animationFrame.current) {
+          cancelAnimationFrame(animationFrame.current);
+          animationFrame.current = undefined;
+        }
+        return;
+      }
+
+      // Use faster speed when returning to center
+      const effectiveSpeed = isAnimatingToCenter.current
+        ? Math.max(smoothingSpeed * 3, 0.003)
+        : smoothingSpeed;
+
+      const smoothingFactor = 1 - Math.pow(1 - effectiveSpeed * 10, deltaTime);
+
+      // Move toward target by a fraction of the distance
+      currentPosition.current.x += distX * smoothingFactor;
+      currentPosition.current.y += distY * smoothingFactor;
+
+      setMousePosition({
+        x: currentPosition.current.x,
+        y: currentPosition.current.y,
+      });
+
+      animationFrame.current = requestAnimationFrame(animate);
+    },
+    [smoothingSpeed, isAnimatingToCenter]
+  );
 
   // Start/stop animation based on hover state
   useEffect(() => {
@@ -135,6 +150,7 @@ const GradientHover: React.FC<GradientHoverProps> = ({
       !animationFrame.current
     ) {
       isAnimationActive.current = true;
+      lastTime.current = 0;
       animationFrame.current = requestAnimationFrame(animate);
     } else if (
       !isHovering &&
@@ -147,6 +163,7 @@ const GradientHover: React.FC<GradientHoverProps> = ({
     }
   }, [isHovering, animate]);
 
+  // Debounced bounds updater
   const debouncedStoreElementBounds = useRef(
     debounce((element: HTMLElement) => {
       if (element) {
@@ -161,19 +178,15 @@ const GradientHover: React.FC<GradientHoverProps> = ({
     }, 100)
   );
 
-  // Update bounds on various events
+  // Update bounds on resize/scroll
   useEffect(() => {
     const nodeEl = ref.current;
-    if (!nodeEl) {
-      return;
-    }
+    if (!nodeEl) return;
 
     const updateBounds = () => debouncedStoreElementBounds.current(nodeEl);
 
-    // Initial bounds calculation
     updateBounds();
 
-    // Listen to various events that can change element position
     window.addEventListener("resize", updateBounds);
     window.addEventListener("scroll", updateBounds, { passive: true });
     window.addEventListener("orientationchange", updateBounds);
@@ -185,18 +198,16 @@ const GradientHover: React.FC<GradientHoverProps> = ({
     };
   }, []);
 
-  // Intersection observer for additional bounds updates
+  // Intersection observer for visibility changes
   useEffect(() => {
     const nodeEl = ref.current;
-    if (!nodeEl) {
-      return;
-    }
+    if (!nodeEl) return;
+
     const fn = () => debouncedStoreElementBounds.current(nodeEl);
     const observer = new IntersectionObserver(fn, { threshold: 0.1 });
     observer.observe(nodeEl);
-    return () => {
-      observer.disconnect();
-    };
+
+    return () => observer.disconnect();
   }, []);
 
   // Cleanup on unmount
@@ -215,7 +226,6 @@ const GradientHover: React.FC<GradientHoverProps> = ({
 
   const handleMouseMove = (event: MouseEvent<HTMLElement>) => {
     const { clientX, clientY } = event;
-    // Get fresh bounds to ensure accuracy
     const freshBounds = getFreshBounds();
     if (freshBounds) {
       targetPosition.current = {
@@ -236,10 +246,8 @@ const GradientHover: React.FC<GradientHoverProps> = ({
     setIsHovering(true);
 
     const { clientX, clientY } = event;
-    // Get fresh bounds to ensure accuracy
     const freshBounds = getFreshBounds();
     if (freshBounds) {
-      // Update stored bounds
       setBounds({
         top: freshBounds.viewportTop,
         left: freshBounds.viewportLeft,
@@ -252,25 +260,22 @@ const GradientHover: React.FC<GradientHoverProps> = ({
         y: clientY - freshBounds.viewportTop,
       };
 
-      // Set the target position to the cursor
       targetPosition.current = targetPos;
 
-      // If we don't have a current position yet or if we're starting fresh,
-      // start from center to ensure smooth animation
+      // Start from center if no current position
       if (currentPosition.current.x === 0 && currentPosition.current.y === 0) {
         currentPosition.current = {
           x: freshBounds.width / 2,
           y: freshBounds.height / 2,
         };
-        // Set initial mouse position to center as well
         setMousePosition({
           x: freshBounds.width / 2,
           y: freshBounds.height / 2,
         });
       }
 
-      // Start the animation to smoothly move to the target position
       isAnimationActive.current = true;
+      lastTime.current = 0;
       if (!animationFrame.current) {
         animationFrame.current = requestAnimationFrame(animate);
       }
@@ -281,7 +286,6 @@ const GradientHover: React.FC<GradientHoverProps> = ({
     setIsHovering(false);
     const freshBounds = getFreshBounds();
     if (freshBounds) {
-      // Update stored bounds
       setBounds({
         top: freshBounds.viewportTop,
         left: freshBounds.viewportLeft,
@@ -289,18 +293,20 @@ const GradientHover: React.FC<GradientHoverProps> = ({
         height: freshBounds.height,
       });
 
-      // Set target to center and start animation back to center
+      // Animate back to center
       targetPosition.current = {
         x: freshBounds.width / 2,
         y: freshBounds.height / 2,
       };
       isAnimatingToCenter.current = true;
       isAnimationActive.current = true;
+      lastTime.current = 0;
+
       if (!animationFrame.current) {
         animationFrame.current = requestAnimationFrame(animate);
       }
     } else {
-      // Fallback if no bounds - just stop immediately
+      // Fallback - stop immediately
       setMousePosition(undefined);
       if (animationFrame.current) {
         cancelAnimationFrame(animationFrame.current);
