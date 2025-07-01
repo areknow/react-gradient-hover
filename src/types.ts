@@ -28,33 +28,16 @@ export interface GradientHoverProps {
   onClick?: () => void;
 
   /**
-   * Whether the component is in an active state
-   */
-  isActive?: boolean;
-
-  /**
    * Animation speed (0.01 = slower, 0.1 = faster)
    * @default 0.01
    */
   animationSpeed?: number;
 
   /**
-   * Border radius of the component
-   * @default '10px'
-   */
-  borderRadius?: string;
-
-  /**
    * Duration of the gradient transition animation in seconds
    * @default 1
    */
   transitionDuration?: number;
-
-  /**
-   * Opacity of the active overlay when clicking
-   * @default 0.05
-   */
-  activeOverlayOpacity?: number;
 
   /**
    * Whether to always show the gradient hover effect

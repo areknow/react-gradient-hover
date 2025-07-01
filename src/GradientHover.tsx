@@ -20,11 +20,8 @@ const GradientHover: React.FC<GradientHoverProps> = ({
   className = "",
   style = {},
   onClick,
-  isActive = true,
   animationSpeed = 0.01,
-  borderRadius = "10px",
   transitionDuration = 1,
-  activeOverlayOpacity = 0.05,
   shouldAlwaysShowGradient = true,
 }) => {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -47,9 +44,7 @@ const GradientHover: React.FC<GradientHoverProps> = ({
   const colorStyles = {
     "--gradient-stop-1": stop1,
     "--gradient-stop-2": stop2,
-    "--border-radius": borderRadius,
     "--transition-duration": `${transitionDuration}s`,
-    "--active-overlay-opacity": activeOverlayOpacity.toString(),
   } as CSSProperties;
 
   let dynamicStyles = {};
@@ -124,7 +119,7 @@ const GradientHover: React.FC<GradientHoverProps> = ({
   // Recalculate bounds when window resizes
   useEffect(() => {
     const nodeEl = ref.current;
-    if (!nodeEl || !isActive) {
+    if (!nodeEl) {
       return;
     }
     const fn = () => debouncedStoreElementBounds.current(nodeEl);
@@ -132,12 +127,12 @@ const GradientHover: React.FC<GradientHoverProps> = ({
     return () => {
       window.removeEventListener("resize", fn);
     };
-  }, [isActive]);
+  }, []);
 
   // Recalculate bounds when element is observed
   useEffect(() => {
     const nodeEl = ref.current;
-    if (!nodeEl || !isActive) {
+    if (!nodeEl) {
       return;
     }
     const fn = () => debouncedStoreElementBounds.current(nodeEl);
@@ -146,7 +141,7 @@ const GradientHover: React.FC<GradientHoverProps> = ({
     return () => {
       observer.disconnect();
     };
-  }, [isActive]);
+  }, []);
 
   // Cleanup on unmount
   useEffect(() => {
