@@ -4,7 +4,7 @@
   position: relative;
   overflow: hidden;
   user-select: none;
-  background-color: var(--gradient-colors, #4ecdc4);
+  background-color: var(--gradient-stop-last, #4ecdc4);
 
   &--always-show {
     background-image: var(

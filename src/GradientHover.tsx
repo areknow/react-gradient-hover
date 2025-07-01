@@ -56,6 +56,7 @@ const GradientHover: React.FC<GradientHoverProps> = ({
   // Generate CSS variables for all gradient stops
   const colorStyles = {
     "--gradient-colors": validColors.join(", "),
+    "--gradient-stop-last": validColors[validColors.length - 1],
     "--gradient-stop-count": validColors.length.toString(),
     "--transition-duration": `${transitionDuration}s`,
     "--gradient-background": generateGradient("50%", "50%"),
