@@ -5,6 +5,8 @@ module.exports = {
   components: "src/**/*.{ts,tsx}",
   ignore: ["**/*.test.{ts,tsx}", "**/index.ts"],
   skipComponentsWithoutExample: true,
+  usageMode: "expand", // Keep prop tables always expanded
+  exampleMode: "expand", // Keep code examples always expanded
   webpackConfig: {
     module: {
       rules: [
@@ -36,17 +38,17 @@ module.exports = {
       },
     ],
   },
-  sections: [
-    {
-      name: "Introduction",
-      content: "docs/Introduction.md",
-    },
-    {
-      name: "Components",
-      components: "src/GradientHover.tsx",
-      content: "docs/GradientHover.md",
-    },
-  ],
+  // sections: [
+  //   {
+  //     name: "Introduction",
+  //     content: "docs/Introduction.md",
+  //   },
+  //   {
+  //     name: "Components",
+  //     components: "src/GradientHover.tsx",
+  //     content: "src/GradientHover.md",
+  //   },
+  // ],
   theme: {
     color: {
       link: "#4ecdc4",
