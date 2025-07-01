@@ -36,12 +36,12 @@ Check out the [interactive documentation](https://areknow.github.io/react-gradie
 ### Basic Example
 
 ```tsx
-import { GradientHover } from 'react-gradient-hover';
+import { GradientHover } from "react-gradient-hover";
 
 function App() {
   return (
     <GradientHover>
-      <div style={{ padding: '2rem' }}>
+      <div style={{ padding: "2rem" }}>
         <h2>Hover over me!</h2>
         <p>The gradient will follow your mouse movement.</p>
       </div>
@@ -53,8 +53,8 @@ function App() {
 ### Custom Colors
 
 ```tsx
-<GradientHover colors={['#ff6b6b', '#4ecdc4']}>
-  <div style={{ padding: '2rem' }}>
+<GradientHover colors={["#ff6b6b", "#4ecdc4"]}>
+  <div style={{ padding: "2rem" }}>
     <h2>Custom gradient colors</h2>
   </div>
 </GradientHover>
@@ -64,13 +64,13 @@ function App() {
 
 ```tsx
 <GradientHover
-  colors={['#667eea', '#764ba2']}
+  colors={["#667eea", "#764ba2"]}
   animationSpeed={5}
   transitionDuration={0.5}
   className="my-custom-class"
-  onClick={() => console.log('Clicked!')}
+  onClick={() => console.log("Clicked!")}
 >
-  <div style={{ padding: '3rem' }}>
+  <div style={{ padding: "3rem" }}>
     <h2>Advanced Configuration</h2>
     <p>With custom properties and click handler</p>
   </div>
@@ -80,11 +80,8 @@ function App() {
 ### Hide Gradient Until Hover
 
 ```tsx
-<GradientHover
-  colors={['#ff6b6b', '#4ecdc4']}
-  shouldAlwaysShowGradient={false}
->
-  <div style={{ padding: '2rem' }}>
+<GradientHover colors={["#ff6b6b", "#4ecdc4"]} shouldAlwaysShowGradient={false}>
+  <div style={{ padding: "2rem" }}>
     <h2>Hidden Gradient</h2>
     <p>The gradient will only appear when you hover over this component</p>
   </div>
@@ -95,16 +92,16 @@ function App() {
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `colors` | `[string, string]` | `['#ff6b6b', '#4ecdc4']` | The two colors used for the gradient effect |
-| `children` | `ReactNode` | - | The content to wrap with the gradient hover effect |
-| `className` | `string` | `''` | Additional CSS classes to apply |
-| `style` | `CSSProperties` | `{}` | Inline styles to apply |
-| `onClick` | `() => void` | - | Click handler for the component |
-| `animationSpeed` | `number` | `3` | Animation speed from 1 (slowest) to 10 (fastest) |
-| `transitionDuration` | `number` | `1` | Duration of the gradient transition animation in seconds |
-| `shouldAlwaysShowGradient` | `boolean` | `true` | Whether to always show the gradient effect or only on hover |
+| Prop                       | Type               | Default                  | Description                                                 |
+| -------------------------- | ------------------ | ------------------------ | ----------------------------------------------------------- |
+| `colors`                   | `[string, string]` | `['#ff6b6b', '#4ecdc4']` | The two colors used for the gradient effect                 |
+| `children`                 | `ReactNode`        | -                        | The content to wrap with the gradient hover effect          |
+| `className`                | `string`           | `''`                     | Additional CSS classes to apply                             |
+| `style`                    | `CSSProperties`    | `{}`                     | Inline styles to apply                                      |
+| `onClick`                  | `() => void`       | -                        | Click handler for the component                             |
+| `animationSpeed`           | `number`           | `3`                      | Animation speed from 1 (slowest) to 10 (fastest)            |
+| `transitionDuration`       | `number`           | `1`                      | Duration of the gradient transition animation in seconds    |
+| `shouldAlwaysShowGradient` | `boolean`          | `true`                   | Whether to always show the gradient effect or only on hover |
 
 ## Styling
 
@@ -112,7 +109,7 @@ The component is fully customizable through props! All visual aspects can be con
 
 ```tsx
 <GradientHover
-  colors={['#custom-color-1', '#custom-color-2']}
+  colors={["#custom-color-1", "#custom-color-2"]}
   transitionDuration={2}
   shouldAlwaysShowGradient={true}
   animationSpeed={7}
@@ -141,6 +138,7 @@ The component uses CSS custom properties internally, which are set from the prop
 ## Browser Support
 
 This component uses modern CSS features including:
+
 - CSS custom properties
 - `inset` property
 
@@ -168,8 +166,9 @@ npm run build
 ```
 
 This creates the distribution files in the `dist/` directory:
+
 - `dist/index.js` - CommonJS bundle
-- `dist/index.esm.js` - ES Module bundle  
+- `dist/index.esm.js` - ES Module bundle
 - `dist/index.d.ts` - TypeScript declarations
 
 #### Run the example in development mode
@@ -209,6 +208,7 @@ The documentation site (Styleguidist) is automatically deployed to GitHub Pages 
 If you need to deploy manually:
 
 1. Build the documentation site:
+
    ```bash
    npm run styleguide:build
    ```
@@ -299,7 +299,7 @@ If you get a 404 error, the name is available. If you get package details, the n
 
 ```bash
 npm version patch  # 1.0.0 -> 1.0.1
-npm version minor  # 1.0.0 -> 1.1.0  
+npm version minor  # 1.0.0 -> 1.1.0
 npm version major  # 1.0.0 -> 2.0.0
 ```
 
@@ -310,6 +310,7 @@ npm publish
 ```
 
 This will automatically:
+
 - Run the build process (via `prepublishOnly` script)
 - Create the package tarball
 - Upload to npm registry
@@ -337,14 +338,17 @@ Before publishing, ensure:
 ### Troubleshooting
 
 #### Package name already taken
+
 If the package name is already taken, update the `name` field in `package.json` to something unique.
 
 #### Publishing fails
+
 - Ensure you're logged in: `npm whoami`
 - Check if you have permission to publish: `npm access ls-packages`
 - Verify the package name is available
 
 #### Build errors
+
 - Check that all dependencies are installed: `npm install`
 - Ensure TypeScript configuration is correct
 - Verify Rollup configuration is valid

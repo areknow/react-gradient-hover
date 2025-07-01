@@ -24,9 +24,6 @@ yarn.lock
 .DS_Store
 Thumbs.db
 
-# Documentation
-*.md
-
 # Config files that might have specific formatting
 *.json
 !tsconfig.json 

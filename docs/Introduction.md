@@ -19,4 +19,4 @@ npm install react-gradient-hover
 
 ## Live Demo
 
-Check out the [live demo](https://areknow.github.io/react-gradient-hover/) to see the component in action! 
+Check out the [live demo](https://areknow.github.io/react-gradient-hover/) to see the component in action!
