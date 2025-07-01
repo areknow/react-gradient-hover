@@ -67,7 +67,7 @@ module.exports = {
       linkHover: "#ff6b6b",
     },
     fontFamily: {
-      base: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
+      base: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
     },
   },
   styles: {
@@ -76,6 +76,8 @@ module.exports = {
         padding: "20px",
         backgroundColor: "#f5f5f5",
         borderRadius: "8px",
+        fontFamily:
+          '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
       },
     },
   },
