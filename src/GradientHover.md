@@ -8,7 +8,14 @@ The main component that creates the interactive gradient hover effect.
 import { GradientHover } from "react-gradient-hover";
 
 <GradientHover>
-  <div style={{ padding: "2rem" }}>
+  <div
+    style={{
+      padding: "2rem",
+      textAlign: "center",
+      color: "white",
+      textShadow: "1px 1px 2px black",
+    }}
+  >
     <h2>Hover over me!</h2>
     <p>The gradient will follow your mouse movement.</p>
   </div>
@@ -21,19 +28,25 @@ The component now supports any number of gradient colors:
 
 ```jsx
 <>
-  <GradientHover colors={["#ff6b6b", "#4ecdc4"]} style={{ marginBottom: 10 }}>
-    <div style={{ padding: 20 }}>Two-color gradient</div>
-  </GradientHover>
-
   <GradientHover
-    colors={["#ff6b6b", "#4ecdc4", "#45b7d1"]}
+    colors={["#E95A45", "#FCF2C1", "#539C99"]}
     style={{ marginBottom: 10 }}
   >
     <div style={{ padding: 20 }}>Three-color gradient</div>
   </GradientHover>
 
   <GradientHover
-    colors={["#ff6b6b", "#4ecdc4", "#45b7d1", "#96ceb4", "#feca57"]}
+    colors={[
+      "#ef5350",
+      "#f48fb1",
+      "#7e57c2",
+      "#2196f3",
+      "#26c6da",
+      "#43a047",
+      "#eeff41",
+      "#f9a825",
+      "#ff5722",
+    ]}
   >
     <div style={{ padding: 20 }}>Multi-color gradient</div>
   </GradientHover>
@@ -46,7 +59,7 @@ Use the controls below to dynamically experiment with all the component props:
 
 ```jsx
 function InteractiveDemo() {
-  const [colors, setColors] = React.useState(["#0dc3e7", "#fc42ff", "#45b7d1"]);
+  const [colors, setColors] = React.useState(["#0dc3e7", "#fc42ff", "#E6FB46"]);
   const [animationSpeed, setAnimationSpeed] = React.useState(5);
   const [transitionDuration, setTransitionDuration] = React.useState(1);
   const [shouldAlwaysShowGradient, setShouldAlwaysShowGradient] =
@@ -76,8 +89,8 @@ function InteractiveDemo() {
             🚀 Interactive Demo
           </h2>
           <p style={{ margin: 0, fontSize: "1.1rem", maxWidth: "400px" }}>
-            Hover over this area and watch the gradient follow your mouse!
-            Adjust the controls above to see how they affect the behavior.
+            Adjust the controls below to see how they affect the behavior of
+            this playground.
           </p>
         </div>
       </GradientHover>

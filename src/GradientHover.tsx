@@ -14,8 +14,10 @@ import { GradientHoverProps } from "./types";
 
 import "./GradientHover.scss";
 
+const DEFAULT_COLORS = ["#EB2DD2", "#5AB5EE"];
+
 const GradientHover: React.FC<GradientHoverProps> = ({
-  colors = ["#ff6b6b", "#4ecdc4"],
+  colors = DEFAULT_COLORS,
   children,
   className = "",
   style = {},
@@ -41,8 +43,7 @@ const GradientHover: React.FC<GradientHoverProps> = ({
   const isAnimationActive = useRef(false);
 
   // Ensure we have at least 2 colors for the gradient
-  const validColors =
-    colors && colors.length >= 2 ? colors : ["#ff6b6b", "#4ecdc4"];
+  const validColors = colors && colors.length >= 2 ? colors : DEFAULT_COLORS;
 
   // Convert user-friendly speed (1-10) to internal speed (0.01-0.1)
   const internalAnimationSpeed =

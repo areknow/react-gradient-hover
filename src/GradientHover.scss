@@ -4,13 +4,10 @@
   position: relative;
   overflow: hidden;
   user-select: none;
-  background-color: var(--gradient-stop-last, #4ecdc4);
+  background-color: var(--gradient-stop-last);
 
   &--always-show {
-    background-image: var(
-      --gradient-background,
-      radial-gradient(circle at 50% 50%, #ff6b6b, #4ecdc4)
-    );
+    background-image: var(--gradient-background,);
   }
 
   &__content {
@@ -25,10 +22,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background-image: var(
-      --gradient-background,
-      radial-gradient(circle at 50% 50%, #ff6b6b, #4ecdc4)
-    );
+    background-image: var(--gradient-background,);
     pointer-events: none;
   }
 
