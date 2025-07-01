@@ -4,7 +4,7 @@ A React component that creates an interactive gradient effect following mouse mo
 
 [![npm version](https://img.shields.io/npm/v/react-gradient-hover.svg)](https://www.npmjs.com/package/react-gradient-hover)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Demo-blue)](https://areknow.github.io/react-gradient-hover/)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Documentation-blue)](https://areknow.github.io/react-gradient-hover/)
 
 ## Features
 
@@ -29,7 +29,7 @@ yarn add react-gradient-hover
 
 ## Live Demo
 
-Check out the [live demo](https://areknow.github.io/react-gradient-hover/) to see the component in action!
+Check out the [interactive documentation](https://areknow.github.io/react-gradient-hover/) to see the component in action with live examples!
 
 ## Usage
 
@@ -192,26 +192,40 @@ This starts a development server with the example app at `http://localhost:5173`
 npm run example:build
 ```
 
+#### Run the documentation site locally
+
+```bash
+npm run styleguide
+```
+
+This starts the interactive Styleguidist documentation at `http://localhost:6060`
+
+#### Build the documentation for production
+
+```bash
+npm run styleguide:build
+```
+
 ### GitHub Pages Deployment
 
-The example site is automatically deployed to GitHub Pages when you push to the `main` branch. The deployment is handled by GitHub Actions.
+The documentation site (Styleguidist) is automatically deployed to GitHub Pages when you push to the `main` branch. The deployment is handled by GitHub Actions.
 
 #### Manual deployment
 
 If you need to deploy manually:
 
-1. Build the example site:
+1. Build the documentation site:
    ```bash
-   npm run example:build
+   npm run styleguide:build
    ```
 
-2. The built files will be in the `example-dist/` directory
+2. The built files will be in the `styleguide/` directory
 
 3. You can then upload these files to GitHub Pages through your repository settings
 
 #### GitHub Pages URL
 
-Once deployed, your example site will be available at:
+Once deployed, your documentation site will be available at:
 `https://areknow.github.io/react-gradient-hover/`
 
 ### Code Quality
@@ -347,4 +361,4 @@ MIT © [Your Name]
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request. 
+Contributions are welcome! Please feel free to submit a Pull Request.

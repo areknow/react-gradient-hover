@@ -1,4 +1,4 @@
-name: Deploy Example to GitHub Pages
+name: Deploy Documentation to GitHub Pages
 
 on:
   push:
@@ -38,8 +38,8 @@ jobs:
       - name: Build the package
         run: npm run build
         
-      - name: Build example site
-        run: npm run example:build
+      - name: Build documentation site
+        run: npm run styleguide:build
         
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -47,7 +47,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './example-dist'
+          path: './styleguide'
 
   # Deployment job
   deploy:

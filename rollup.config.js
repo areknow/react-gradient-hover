@@ -43,7 +43,6 @@ module.exports = [
         modules: false,
         extract: false,
         inject: true,
-        use: ["sass"],
       }),
     ],
     external: ["react", "react-dom", "lodash.debounce"],
