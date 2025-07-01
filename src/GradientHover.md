@@ -273,15 +273,6 @@ function InteractiveDemo() {
                 +
               </button>
             </div>
-            <div
-              style={{
-                fontSize: "0.8rem",
-                color: "#666",
-                marginTop: "0.5rem",
-              }}
-            >
-              Click + to add more colors, or Remove to delete colors (minimum 2)
-            </div>
           </div>
         </div>
       </div>
