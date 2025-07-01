@@ -1,20 +1,24 @@
 # React Gradient Hover
 
-A React component that creates an interactive gradient effect following mouse movement on hover. The gradient smoothly animates and creates a spotlight effect that follows the cursor.
+A high-performance React component that creates an elegant, interactive gradient effect that follows cursor movement. Perfect for creating engaging hover states and modern UI elements.
 
 [![npm version](https://img.shields.io/npm/v/react-gradient-hover.svg)](https://www.npmjs.com/package/react-gradient-hover)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Documentation-blue)](https://areknow.github.io/react-gradient-hover/)
 
-## Features
+## Overview
 
-- 🎨 Smooth gradient animation that follows mouse movement
-- 🌈 Support for N number of gradient colors (2 or more)
-- 🎯 Customizable gradient colors
-- ⚡ High-performance animations using requestAnimationFrame
-- 🔧 Flexible component API with TypeScript support
-- 📱 Responsive and works on all screen sizes
-- 🎪 Smooth return-to-center animation on mouse leave
+React Gradient Hover enhances your UI with smooth, performant gradient animations that respond to user interaction. The component creates a dynamic spotlight effect that follows the cursor, providing a modern and engaging user experience.
+
+### Key Features
+
+- 🎨 Fluid gradient animations using requestAnimationFrame
+- 🌈 Support for multiple gradient colors (minimum of 2)
+- ⚡ Optimized performance with debounced event handling
+- 🎯 Customizable animation speed and transition duration
+- 📱 Responsive design with automatic resizing
+- 🔧 TypeScript support with comprehensive type definitions
+- 🎪 Smooth return-to-center animation
 
 ## Installation
 
@@ -28,13 +32,7 @@ or
 yarn add react-gradient-hover
 ```
 
-## Live Demo
-
-Check out the [interactive documentation](https://areknow.github.io/react-gradient-hover/) to see the component in action with live examples!
-
-## Usage
-
-### Basic Example
+## Quick Start
 
 ```tsx
 import { GradientHover } from "react-gradient-hover";
@@ -43,135 +41,66 @@ function App() {
   return (
     <GradientHover>
       <div style={{ padding: "2rem" }}>
-        <h2>Hover over me!</h2>
-        <p>The gradient will follow your mouse movement.</p>
+        <h2>Interactive Gradient</h2>
+        <p>Hover to see the effect in action</p>
       </div>
     </GradientHover>
   );
 }
 ```
 
-### Custom Colors
-
-```tsx
-// Two colors (default)
-<GradientHover colors={["#ff6b6b", "#4ecdc4"]}>
-  <div style={{ padding: "2rem" }}>
-    <h2>Two-color gradient</h2>
-  </div>
-</GradientHover>
-
-// Three or more colors
-<GradientHover colors={["#ff6b6b", "#4ecdc4", "#45b7d1", "#96ceb4"]}>
-  <div style={{ padding: "2rem" }}>
-    <h2>Multi-color gradient</h2>
-  </div>
-</GradientHover>
-```
-
-### Advanced Configuration
-
-```tsx
-<GradientHover
-  colors={["#667eea", "#764ba2", "#f093fb"]}
-  animationSpeed={5}
-  transitionDuration={0.5}
-  className="my-custom-class"
-  onClick={() => console.log("Clicked!")}
->
-  <div style={{ padding: "3rem" }}>
-    <h2>Advanced Configuration</h2>
-    <p>With custom properties, click handler, and multiple gradient colors</p>
-  </div>
-</GradientHover>
-```
-
-### Multi-Color Gradients
-
-The component now supports any number of gradient colors (minimum 2):
-
-```tsx
-// Rainbow gradient
-<GradientHover colors={["#ff0000", "#ff8000", "#ffff00", "#00ff00", "#0080ff", "#8000ff"]}>
-  <div style={{ padding: "2rem" }}>
-    <h2>Rainbow Gradient</h2>
-  </div>
-</GradientHover>
-
-// Sunset gradient
-<GradientHover colors={["#ff6b6b", "#feca57", "#48dbfb", "#0abde3"]}>
-  <div style={{ padding: "2rem" }}>
-    <h2>Sunset Gradient</h2>
-  </div>
-</GradientHover>
-```
-
-### Hide Gradient Until Hover
-
-```tsx
-<GradientHover colors={["#ff6b6b", "#4ecdc4"]} shouldAlwaysShowGradient={false}>
-  <div style={{ padding: "2rem" }}>
-    <h2>Hidden Gradient</h2>
-    <p>The gradient will only appear when you hover over this component</p>
-  </div>
-</GradientHover>
-```
-
-## API
+## Component API
 
 ### Props
 
-| Prop                       | Type            | Default                  | Description                                                 |
-| -------------------------- | --------------- | ------------------------ | ----------------------------------------------------------- |
-| `colors`                   | `string[]`      | `['#ff6b6b', '#4ecdc4']` | The colors used for the gradient effect (minimum 2 colors)  |
-| `children`                 | `ReactNode`     | -                        | The content to wrap with the gradient hover effect          |
-| `className`                | `string`        | `''`                     | Additional CSS classes to apply                             |
-| `style`                    | `CSSProperties` | `{}`                     | Inline styles to apply                                      |
-| `onClick`                  | `() => void`    | -                        | Click handler for the component                             |
-| `animationSpeed`           | `number`        | `3`                      | Animation speed from 1 (slowest) to 10 (fastest)            |
-| `transitionDuration`       | `number`        | `1`                      | Duration of the gradient transition animation in seconds    |
-| `shouldAlwaysShowGradient` | `boolean`       | `true`                   | Whether to always show the gradient effect or only on hover |
+| Prop                       | Type            | Default                  | Description                                 |
+| -------------------------- | --------------- | ------------------------ | ------------------------------------------- |
+| `colors`                   | `string[]`      | `['#EB2DD2', '#5AB5EE']` | Array of gradient colors (minimum 2)        |
+| `children`                 | `ReactNode`     | Required                 | Content to wrap with the gradient effect    |
+| `className`                | `string`        | `''`                     | Additional CSS class names                  |
+| `style`                    | `CSSProperties` | `{}`                     | Additional inline styles                    |
+| `onClick`                  | `() => void`    | -                        | Optional click handler                      |
+| `animationSpeed`           | `number`        | `5`                      | Animation speed (1-10, where 10 is fastest) |
+| `transitionDuration`       | `number`        | `1`                      | Transition duration in seconds              |
+| `shouldAlwaysShowGradient` | `boolean`       | `true`                   | Whether to show gradient before hover       |
 
-## Styling
+## Advanced Usage
 
-The component is fully customizable through props! All visual aspects can be controlled by passing the appropriate props:
+### Custom Color Gradients
 
 ```tsx
-<GradientHover
-  colors={["#custom-color-1", "#custom-color-2"]}
-  transitionDuration={2}
-  shouldAlwaysShowGradient={true}
-  animationSpeed={7}
->
-  {/* Your content */}
+// Two-color gradient
+<GradientHover colors={["#667eea", "#764ba2"]}>
+  <div>Your content</div>
+</GradientHover>
+
+// Multi-color gradient
+<GradientHover colors={["#ff6b6b", "#4ecdc4", "#45b7d1"]}>
+  <div>Your content</div>
 </GradientHover>
 ```
 
-### Advanced CSS Customization
+### Animation Control
 
-If you need additional styling beyond the available props, you can target the component with CSS:
-
-```css
-.gradient-hover {
-  /* Your custom styles */
-  border-radius: 20px; /* Custom border radius */
-}
-
-.gradient-hover--is-hovering {
-  /* Styles applied during hover */
-}
+```tsx
+<GradientHover
+  animationSpeed={7}
+  transitionDuration={0.5}
+  shouldAlwaysShowGradient={false}
+>
+  <div>Your content</div>
+</GradientHover>
 ```
-
-The component uses CSS custom properties internally, which are set from the props you pass.
 
 ## Browser Support
 
-This component uses modern CSS features including:
+The component utilizes modern CSS features including:
 
-- CSS custom properties
-- `inset` property
+- CSS Custom Properties (CSS Variables)
+- `requestAnimationFrame` API
+- Standard CSS positioning and transforms
 
-Make sure your target browsers support these features or provide appropriate fallbacks.
+Ensure your target browsers support these features or include appropriate polyfills.
 
 ## Development
 
@@ -180,212 +109,113 @@ Make sure your target browsers support these features or provide appropriate fal
 - Node.js (version 16 or higher)
 - npm or yarn
 
-### Install dependencies
+### Local Development
 
-```bash
-npm install
-```
+1. Install dependencies:
 
-### Development Workflow
+   ```bash
+   npm install
+   ```
 
-#### Build the package
+2. Start development server:
 
-```bash
-npm run build
-```
+   ```bash
+   npm run dev
+   ```
 
-This creates the distribution files in the `dist/` directory:
+3. Run tests:
 
-- `dist/index.js` - CommonJS bundle
-- `dist/index.esm.js` - ES Module bundle
-- `dist/index.d.ts` - TypeScript declarations
+   ```bash
+   npm test
+   ```
 
-#### Run the example in development mode
+4. Build the package:
+   ```bash
+   npm run build
+   ```
 
-```bash
-npm run example
-```
+### Documentation
 
-This starts a development server with the example app at `http://localhost:5173`
+View the interactive documentation and examples at [https://areknow.github.io/react-gradient-hover/](https://areknow.github.io/react-gradient-hover/)
 
-#### Build the example for production
-
-```bash
-npm run example:build
-```
-
-#### Run the documentation site locally
+To run the documentation locally:
 
 ```bash
 npm run styleguide
 ```
 
-This starts the interactive Styleguidist documentation at `http://localhost:6060`
+### Publishing Process
 
-#### Build the documentation for production
+Before publishing a new version, ensure you complete the following checklist:
 
-```bash
-npm run styleguide:build
-```
+- [ ] All tests pass (`npm test`)
+- [ ] Code is linted (`npm run lint`)
+- [ ] TypeScript compilation succeeds (`npm run typecheck`)
+- [ ] Documentation is up to date
+- [ ] Version number is appropriate for changes (following semver)
+- [ ] Changelog is updated
+- [ ] Git working directory is clean
 
-### GitHub Pages Deployment
+#### Testing the Package Locally
 
-The documentation site (Styleguidist) is automatically deployed to GitHub Pages when you push to the `main` branch. The deployment is handled by GitHub Actions.
+Before publishing to npm, it's recommended to test the package locally:
 
-#### Manual deployment
-
-If you need to deploy manually:
-
-1. Build the documentation site:
+1. Create a test package:
 
    ```bash
-   npm run styleguide:build
+   npm pack --dry-run  # List the files that will be included
+   npm pack           # Create the tarball
    ```
 
-2. The built files will be in the `styleguide/` directory
+2. Test in another project:
 
-3. You can then upload these files to GitHub Pages through your repository settings
+   ```bash
+   cd ../your-test-project
+   npm install ../react-gradient-hover/react-gradient-hover-x.y.z.tgz
+   ```
 
-#### GitHub Pages URL
+3. Verify the package works as expected in your test project
 
-Once deployed, your documentation site will be available at:
-`https://areknow.github.io/react-gradient-hover/`
+#### Publishing Steps
 
-### Code Quality
+1. Update the version:
 
-#### Run linting
+   ```bash
+   npm version patch  # for bug fixes (1.0.0 -> 1.0.1)
+   npm version minor  # for new features (1.0.0 -> 1.1.0)
+   npm version major  # for breaking changes (1.0.0 -> 2.0.0)
+   ```
 
-```bash
-npm run lint
-```
+2. Build and publish:
 
-#### Run linting with auto-fix
+   ```bash
+   npm run build
+   npm publish
+   ```
 
-```bash
-npm run lint:fix
-```
+3. Push changes and tags:
+   ```bash
+   git push && git push --tags
+   ```
 
-#### Format code
+#### Troubleshooting
 
-```bash
-npm run format
-```
-
-#### Check formatting
-
-```bash
-npm run format:check
-```
-
-#### Type checking
-
-```bash
-npm run typecheck
-```
-
-### Testing Before Publishing
-
-#### Dry run package creation
-
-```bash
-npm pack --dry-run
-```
-
-This shows what files will be included in the published package without actually creating the tarball.
-
-#### Test the package locally
-
-```bash
-npm pack
-npm install ./react-gradient-hover-1.0.0.tgz
-```
-
-This creates a local tarball and installs it to test the package before publishing.
-
-### Publishing to npm
-
-#### 1. Login to npm (if not already logged in)
-
-```bash
-npm login
-```
-
-#### 2. Check if you're logged in
-
-```bash
-npm whoami
-```
-
-#### 3. Check if the package name is available
-
-```bash
-npm view react-gradient-hover
-```
-
-If you get a 404 error, the name is available. If you get package details, the name is taken.
-
-#### 4. Update version (if needed)
-
-```bash
-npm version patch  # 1.0.0 -> 1.0.1
-npm version minor  # 1.0.0 -> 1.1.0
-npm version major  # 1.0.0 -> 2.0.0
-```
-
-#### 5. Build and publish
-
-```bash
-npm publish
-```
-
-This will automatically:
-
-- Run the build process (via `prepublishOnly` script)
-- Create the package tarball
-- Upload to npm registry
-
-#### 6. Verify the published package
-
-```bash
-npm view react-gradient-hover
-```
-
-### Publishing Checklist
-
-Before publishing, ensure:
-
-- [ ] All tests pass
-- [ ] Code is linted and formatted
-- [ ] TypeScript compilation succeeds
-- [ ] Example builds and runs correctly
-- [ ] README is up to date
-- [ ] Package.json has correct metadata (name, version, author, repository)
-- [ ] License file is present
-- [ ] No sensitive information in the package
-- [ ] Version number is appropriate for the changes
-
-### Troubleshooting
-
-#### Package name already taken
-
-If the package name is already taken, update the `name` field in `package.json` to something unique.
-
-#### Publishing fails
+If publishing fails:
 
 - Ensure you're logged in: `npm whoami`
-- Check if you have permission to publish: `npm access ls-packages`
-- Verify the package name is available
+- Verify you have publish permissions: `npm access ls-packages`
+- Check that the package name is available: `npm view react-gradient-hover`
 
-#### Build errors
+For build errors:
 
-- Check that all dependencies are installed: `npm install`
-- Ensure TypeScript configuration is correct
-- Verify Rollup configuration is valid
-
-## License
-
-MIT © [Your Name]
+- Verify all dependencies are installed
+- Check TypeScript and Rollup configurations
+- Review the build logs for specific errors
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
+
+## License
+
+[MIT](LICENSE) © [areknow](https://github.com/areknow)
