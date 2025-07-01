@@ -8,6 +8,10 @@ module.exports = {
   usageMode: "expand", // Keep prop tables always expanded
   exampleMode: "expand", // Keep code examples always expanded
   propsParser: require("react-docgen-typescript").parse,
+  getComponentPathLine(componentPath) {
+    const name = path.basename(componentPath, path.extname(componentPath));
+    return `import { ${name} } from "react-gradient-hover";`;
+  },
   webpackConfig: {
     module: {
       rules: [
