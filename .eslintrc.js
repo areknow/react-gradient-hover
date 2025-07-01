@@ -4,7 +4,7 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  ignorePatterns: ["vite.config.js", "rollup.config.js"],
+  ignorePatterns: ["rollup.config.js"],
   overrides: [
     {
       files: ["*.ts", "*.tsx"],
