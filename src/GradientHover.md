@@ -81,7 +81,7 @@ function InteractiveDemo() {
       {/* Control Panel */}
       <div
         style={{
-          marginBottom: "2rem",
+          marginTop: "2rem",
           padding: "1.5rem",
           border: "1px solid #ddd",
           borderRadius: "8px",
