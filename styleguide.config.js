@@ -7,6 +7,7 @@ module.exports = {
   skipComponentsWithoutExample: true,
   usageMode: "expand", // Keep prop tables always expanded
   exampleMode: "expand", // Keep code examples always expanded
+  propsParser: require("react-docgen-typescript").parse,
   webpackConfig: {
     module: {
       rules: [
