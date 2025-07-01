@@ -28,8 +28,8 @@ export interface GradientHoverProps {
   onClick?: () => void;
 
   /**
-   * Animation speed (0.01 = slower, 0.1 = faster)
-   * @default 0.01
+   * Animation speed from 1 (slowest) to 10 (fastest)
+   * @default 3
    */
   animationSpeed?: number;
 

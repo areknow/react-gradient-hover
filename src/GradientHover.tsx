@@ -20,7 +20,7 @@ const GradientHover: React.FC<GradientHoverProps> = ({
   className = "",
   style = {},
   onClick,
-  animationSpeed = 0.03,
+  animationSpeed = 3,
   transitionDuration = 1,
   shouldAlwaysShowGradient = true,
 }) => {
@@ -41,6 +41,10 @@ const GradientHover: React.FC<GradientHoverProps> = ({
   const isAnimationActive = useRef(false);
 
   const [stop1, stop2] = colors;
+
+  // Convert user-friendly speed (1-10) to internal speed (0.01-0.1)
+  const internalAnimationSpeed =
+    Math.max(1, Math.min(10, animationSpeed)) * 0.01;
 
   const colorStyles = {
     "--gradient-stop-1": stop1,
@@ -99,8 +103,8 @@ const GradientHover: React.FC<GradientHoverProps> = ({
       return;
     }
 
-    currentPosition.current.x += distX * animationSpeed;
-    currentPosition.current.y += distY * animationSpeed;
+    currentPosition.current.x += distX * internalAnimationSpeed;
+    currentPosition.current.y += distY * internalAnimationSpeed;
 
     setMousePosition({
       x: currentPosition.current.x,
@@ -108,7 +112,7 @@ const GradientHover: React.FC<GradientHoverProps> = ({
     });
 
     animationFrame.current = requestAnimationFrame(animate);
-  }, [animationSpeed]);
+  }, [internalAnimationSpeed]);
 
   // Start/stop animation based on hover state
   useEffect(() => {

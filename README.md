@@ -65,10 +65,8 @@ function App() {
 ```tsx
 <GradientHover
   colors={['#667eea', '#764ba2']}
-  animationSpeed={0.02}
-  borderRadius="20px"
+  animationSpeed={5}
   transitionDuration={0.5}
-  activeOverlayOpacity={0.1}
   className="my-custom-class"
   onClick={() => console.log('Clicked!')}
 >
@@ -104,11 +102,8 @@ function App() {
 | `className` | `string` | `''` | Additional CSS classes to apply |
 | `style` | `CSSProperties` | `{}` | Inline styles to apply |
 | `onClick` | `() => void` | - | Click handler for the component |
-| `isActive` | `boolean` | `true` | Whether the gradient effect is active |
-| `animationSpeed` | `number` | `0.01` | Animation speed (0.01 = slower, 0.1 = faster) |
-| `borderRadius` | `string` | `'10px'` | Border radius of the component |
+| `animationSpeed` | `number` | `3` | Animation speed from 1 (slowest) to 10 (fastest) |
 | `transitionDuration` | `number` | `1` | Duration of the gradient transition animation in seconds |
-| `activeOverlayOpacity` | `number` | `0.05` | Opacity of the active overlay when clicking |
 | `shouldAlwaysShowGradient` | `boolean` | `true` | Whether to always show the gradient effect or only on hover |
 
 ## Styling
@@ -118,11 +113,9 @@ The component is fully customizable through props! All visual aspects can be con
 ```tsx
 <GradientHover
   colors={['#custom-color-1', '#custom-color-2']}
-  borderRadius="20px"
   transitionDuration={2}
-  activeOverlayOpacity={0.1}
   shouldAlwaysShowGradient={true}
-  animationSpeed={0.02}
+  animationSpeed={7}
 >
   {/* Your content */}
 </GradientHover>
@@ -135,6 +128,7 @@ If you need additional styling beyond the available props, you can target the co
 ```css
 .gradient-hover {
   /* Your custom styles */
+  border-radius: 20px; /* Custom border radius */
 }
 
 .gradient-hover--is-hovering {

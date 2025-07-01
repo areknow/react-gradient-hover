@@ -23,7 +23,7 @@ Use the controls below to dynamically experiment with all the component props:
 function InteractiveDemo() {
   const [color1, setColor1] = React.useState('#0dc3e7');
   const [color2, setColor2] = React.useState('#fc42ff');
-  const [animationSpeed, setAnimationSpeed] = React.useState(0.05);
+  const [animationSpeed, setAnimationSpeed] = React.useState(5);
   const [transitionDuration, setTransitionDuration] = React.useState(1);
   const [shouldAlwaysShowGradient, setShouldAlwaysShowGradient] = React.useState(true);
 
@@ -79,13 +79,13 @@ function InteractiveDemo() {
           {/* Animation Speed */}
           <div>
             <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold', color: '#555' }}>
-              ⚡ Animation Speed: {animationSpeed.toFixed(3)}
+              ⚡ Animation Speed: {animationSpeed.toFixed(0)}
             </label>
             <input
               type="range"
-              min="0.001"
-              max="0.1"
-              step="0.001"
+              min="0"
+              max="10"
+              step="1"
               value={animationSpeed}
               onChange={(e) => setAnimationSpeed(parseFloat(e.target.value))}
               style={{ width: '100%' }}
