@@ -7,10 +7,17 @@ module.exports = {
   skipComponentsWithoutExample: true,
   usageMode: "expand", // Keep prop tables always expanded
   exampleMode: "expand", // Keep code examples always expanded
+  showSidebar: false, // Hide the sidebar
   propsParser: require("react-docgen-typescript").parse,
   getComponentPathLine(componentPath) {
     const name = path.basename(componentPath, path.extname(componentPath));
     return `import { ${name} } from "react-gradient-hover";`;
+  },
+  ribbon: {
+    // Link to open on the ribbon click (required)
+    url: "https://github.com/areknow/react-gradient-hover",
+    // Text to show on the ribbon (optional)
+    text: "Fork me on GitHub",
   },
   webpackConfig: {
     module: {
