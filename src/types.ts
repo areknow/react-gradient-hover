@@ -2,10 +2,10 @@ import { CSSProperties, ReactNode } from "react";
 
 export interface GradientHoverProps {
   /**
-   * The gradient colors to use. Must be an array of 2 colors.
+   * The gradient colors to use. Can be an array of any number of colors.
    * @default ['#ff6b6b', '#4ecdc4']
    */
-  colors?: [string, string];
+  colors?: string[];
 
   /**
    * The content to wrap with gradient hover effect

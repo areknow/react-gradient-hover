@@ -40,23 +40,35 @@ const GradientHover: React.FC<GradientHoverProps> = ({
   const isAnimatingToCenter = useRef(false);
   const isAnimationActive = useRef(false);
 
-  const [stop1, stop2] = colors;
+  // Ensure we have at least 2 colors for the gradient
+  const validColors =
+    colors && colors.length >= 2 ? colors : ["#ff6b6b", "#4ecdc4"];
 
   // Convert user-friendly speed (1-10) to internal speed (0.01-0.1)
   const internalAnimationSpeed =
     Math.max(1, Math.min(10, animationSpeed)) * 0.01;
 
+  // Generate gradient string for CSS
+  const generateGradient = (x: string, y: string) => {
+    return `radial-gradient(circle at ${x} ${y}, ${validColors.join(", ")})`;
+  };
+
+  // Generate CSS variables for all gradient stops
   const colorStyles = {
-    "--gradient-stop-1": stop1,
-    "--gradient-stop-2": stop2,
+    "--gradient-colors": validColors.join(", "),
+    "--gradient-stop-count": validColors.length.toString(),
     "--transition-duration": `${transitionDuration}s`,
+    "--gradient-background": generateGradient("50%", "50%"),
   } as CSSProperties;
 
   let dynamicStyles = {};
   if (mousePosition && bounds) {
+    const x = `${Math.round((mousePosition.x / bounds.width) * 100)}%`;
+    const y = `${Math.round((mousePosition.y / bounds.height) * 100)}%`;
     dynamicStyles = {
-      "--gradient-x": `${Math.round((mousePosition.x / bounds.width) * 100)}%`,
-      "--gradient-y": `${Math.round((mousePosition.y / bounds.height) * 100)}%`,
+      "--gradient-x": x,
+      "--gradient-y": y,
+      "--gradient-background": generateGradient(x, y),
     } as CSSProperties;
   }
 
@@ -233,13 +245,33 @@ const GradientHover: React.FC<GradientHoverProps> = ({
         height: freshBounds.height,
       });
 
-      const initialPos = {
+      const targetPos = {
         x: clientX - freshBounds.viewportLeft,
         y: clientY - freshBounds.viewportTop,
       };
-      targetPosition.current = initialPos;
-      currentPosition.current = initialPos;
-      setMousePosition(initialPos);
+
+      // Set the target position to the cursor
+      targetPosition.current = targetPos;
+
+      // If we don't have a current position yet or if we're starting fresh,
+      // start from center to ensure smooth animation
+      if (currentPosition.current.x === 0 && currentPosition.current.y === 0) {
+        currentPosition.current = {
+          x: freshBounds.width / 2,
+          y: freshBounds.height / 2,
+        };
+        // Set initial mouse position to center as well
+        setMousePosition({
+          x: freshBounds.width / 2,
+          y: freshBounds.height / 2,
+        });
+      }
+
+      // Start the animation to smoothly move to the target position
+      isAnimationActive.current = true;
+      if (!animationFrame.current) {
+        animationFrame.current = requestAnimationFrame(animate);
+      }
     }
   };
 

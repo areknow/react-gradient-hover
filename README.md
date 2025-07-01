@@ -9,6 +9,7 @@ A React component that creates an interactive gradient effect following mouse mo
 ## Features
 
 - 🎨 Smooth gradient animation that follows mouse movement
+- 🌈 Support for N number of gradient colors (2 or more)
 - 🎯 Customizable gradient colors
 - ⚡ High-performance animations using requestAnimationFrame
 - 🔧 Flexible component API with TypeScript support
@@ -53,9 +54,17 @@ function App() {
 ### Custom Colors
 
 ```tsx
+// Two colors (default)
 <GradientHover colors={["#ff6b6b", "#4ecdc4"]}>
   <div style={{ padding: "2rem" }}>
-    <h2>Custom gradient colors</h2>
+    <h2>Two-color gradient</h2>
+  </div>
+</GradientHover>
+
+// Three or more colors
+<GradientHover colors={["#ff6b6b", "#4ecdc4", "#45b7d1", "#96ceb4"]}>
+  <div style={{ padding: "2rem" }}>
+    <h2>Multi-color gradient</h2>
   </div>
 </GradientHover>
 ```
@@ -64,7 +73,7 @@ function App() {
 
 ```tsx
 <GradientHover
-  colors={["#667eea", "#764ba2"]}
+  colors={["#667eea", "#764ba2", "#f093fb"]}
   animationSpeed={5}
   transitionDuration={0.5}
   className="my-custom-class"
@@ -72,7 +81,27 @@ function App() {
 >
   <div style={{ padding: "3rem" }}>
     <h2>Advanced Configuration</h2>
-    <p>With custom properties and click handler</p>
+    <p>With custom properties, click handler, and multiple gradient colors</p>
+  </div>
+</GradientHover>
+```
+
+### Multi-Color Gradients
+
+The component now supports any number of gradient colors (minimum 2):
+
+```tsx
+// Rainbow gradient
+<GradientHover colors={["#ff0000", "#ff8000", "#ffff00", "#00ff00", "#0080ff", "#8000ff"]}>
+  <div style={{ padding: "2rem" }}>
+    <h2>Rainbow Gradient</h2>
+  </div>
+</GradientHover>
+
+// Sunset gradient
+<GradientHover colors={["#ff6b6b", "#feca57", "#48dbfb", "#0abde3"]}>
+  <div style={{ padding: "2rem" }}>
+    <h2>Sunset Gradient</h2>
   </div>
 </GradientHover>
 ```
@@ -92,16 +121,16 @@ function App() {
 
 ### Props
 
-| Prop                       | Type               | Default                  | Description                                                 |
-| -------------------------- | ------------------ | ------------------------ | ----------------------------------------------------------- |
-| `colors`                   | `[string, string]` | `['#ff6b6b', '#4ecdc4']` | The two colors used for the gradient effect                 |
-| `children`                 | `ReactNode`        | -                        | The content to wrap with the gradient hover effect          |
-| `className`                | `string`           | `''`                     | Additional CSS classes to apply                             |
-| `style`                    | `CSSProperties`    | `{}`                     | Inline styles to apply                                      |
-| `onClick`                  | `() => void`       | -                        | Click handler for the component                             |
-| `animationSpeed`           | `number`           | `3`                      | Animation speed from 1 (slowest) to 10 (fastest)            |
-| `transitionDuration`       | `number`           | `1`                      | Duration of the gradient transition animation in seconds    |
-| `shouldAlwaysShowGradient` | `boolean`          | `true`                   | Whether to always show the gradient effect or only on hover |
+| Prop                       | Type            | Default                  | Description                                                 |
+| -------------------------- | --------------- | ------------------------ | ----------------------------------------------------------- |
+| `colors`                   | `string[]`      | `['#ff6b6b', '#4ecdc4']` | The colors used for the gradient effect (minimum 2 colors)  |
+| `children`                 | `ReactNode`     | -                        | The content to wrap with the gradient hover effect          |
+| `className`                | `string`        | `''`                     | Additional CSS classes to apply                             |
+| `style`                    | `CSSProperties` | `{}`                     | Inline styles to apply                                      |
+| `onClick`                  | `() => void`    | -                        | Click handler for the component                             |
+| `animationSpeed`           | `number`        | `3`                      | Animation speed from 1 (slowest) to 10 (fastest)            |
+| `transitionDuration`       | `number`        | `1`                      | Duration of the gradient transition animation in seconds    |
+| `shouldAlwaysShowGradient` | `boolean`       | `true`                   | Whether to always show the gradient effect or only on hover |
 
 ## Styling
 

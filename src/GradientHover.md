@@ -15,24 +15,48 @@ import { GradientHover } from "react-gradient-hover";
 </GradientHover>;
 ```
 
+## Multiple Gradient Colors
+
+The component now supports any number of gradient colors:
+
+```jsx
+<>
+  <GradientHover colors={["#ff6b6b", "#4ecdc4"]} style={{ marginBottom: 10 }}>
+    <div style={{ padding: 20 }}>Two-color gradient</div>
+  </GradientHover>
+
+  <GradientHover
+    colors={["#ff6b6b", "#4ecdc4", "#45b7d1"]}
+    style={{ marginBottom: 10 }}
+  >
+    <div style={{ padding: 20 }}>Three-color gradient</div>
+  </GradientHover>
+
+  <GradientHover
+    colors={["#ff6b6b", "#4ecdc4", "#45b7d1", "#96ceb4", "#feca57"]}
+  >
+    <div style={{ padding: 20 }}>Multi-color gradient</div>
+  </GradientHover>
+</>
+```
+
 ## Interactive Playground
 
 Use the controls below to dynamically experiment with all the component props:
 
 ```jsx
 function InteractiveDemo() {
-  const [color1, setColor1] = React.useState("#0dc3e7");
-  const [color2, setColor2] = React.useState("#fc42ff");
+  const [colors, setColors] = React.useState(["#0dc3e7", "#fc42ff", "#45b7d1"]);
   const [animationSpeed, setAnimationSpeed] = React.useState(5);
   const [transitionDuration, setTransitionDuration] = React.useState(1);
   const [shouldAlwaysShowGradient, setShouldAlwaysShowGradient] =
     React.useState(true);
 
   return (
-    <div style={{ fontFamily: "Arial, sans-serif" }}>
+    <div>
       {/* Demo Component */}
       <GradientHover
-        colors={[color1, color2]}
+        colors={colors}
         animationSpeed={animationSpeed}
         transitionDuration={transitionDuration}
         shouldAlwaysShowGradient={shouldAlwaysShowGradient}
@@ -184,71 +208,84 @@ function InteractiveDemo() {
                 color: "#555",
               }}
             >
-              🎨 First Color:
+              🎨 Gradient Colors ({colors.length} colors):
             </label>
-            <input
-              type="color"
-              value={color1}
-              onChange={(e) => setColor1(e.target.value)}
+            <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+              {colors.map((color, index) => (
+                <div
+                  key={index}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
+                  <input
+                    type="color"
+                    value={color}
+                    onChange={(e) => {
+                      const newColors = [...colors];
+                      newColors[index] = e.target.value;
+                      setColors(newColors);
+                    }}
+                    style={{
+                      width: "40px",
+                      height: "40px",
+                      border: "none",
+                      borderRadius: "4px",
+                      cursor: "pointer",
+                    }}
+                  />
+                  <button
+                    onClick={() => {
+                      const newColors = colors.filter((_, i) => i !== index);
+                      if (newColors.length >= 2) {
+                        setColors(newColors);
+                      }
+                    }}
+                    disabled={colors.length <= 2}
+                    style={{
+                      marginTop: "0.25rem",
+                      padding: "0.25rem 0.5rem",
+                      fontSize: "0.7rem",
+                      border: "1px solid #ddd",
+                      borderRadius: "4px",
+                      backgroundColor: colors.length <= 2 ? "#f0f0f0" : "#fff",
+                      cursor: colors.length <= 2 ? "not-allowed" : "pointer",
+                    }}
+                  >
+                    Remove
+                  </button>
+                </div>
+              ))}
+              <button
+                onClick={() => setColors([...colors, "#000000"])}
+                style={{
+                  width: "40px",
+                  height: "40px",
+                  border: "2px dashed #ddd",
+                  borderRadius: "4px",
+                  backgroundColor: "transparent",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "1.5rem",
+                  color: "#666",
+                }}
+              >
+                +
+              </button>
+            </div>
+            <div
               style={{
-                width: "100%",
-                height: "40px",
-                border: "none",
-                borderRadius: "4px",
-              }}
-            />
-            <input
-              type="text"
-              value={color1}
-              onChange={(e) => setColor1(e.target.value)}
-              style={{
-                width: "100%",
+                fontSize: "0.8rem",
+                color: "#666",
                 marginTop: "0.5rem",
-                padding: "0.5rem",
-                border: "1px solid #ddd",
-                borderRadius: "4px",
-                fontFamily: "monospace",
-                display: "none",
-              }}
-            />
-          </div>
-
-          <div>
-            <label
-              style={{
-                display: "block",
-                marginBottom: "0.5rem",
-                fontWeight: "bold",
-                color: "#555",
               }}
             >
-              🎨 Second Color:
-            </label>
-            <input
-              type="color"
-              value={color2}
-              onChange={(e) => setColor2(e.target.value)}
-              style={{
-                width: "100%",
-                height: "40px",
-                border: "none",
-                borderRadius: "4px",
-              }}
-            />
-            <input
-              type="text"
-              value={color2}
-              onChange={(e) => setColor2(e.target.value)}
-              style={{
-                width: "100%",
-                marginTop: "0.5rem",
-                padding: "0.5rem",
-                border: "1px solid #ddd",
-                borderRadius: "4px",
-                fontFamily: "monospace",
-                display: "none",
-              }}
-            />
+              Click + to add more colors, or Remove to delete colors (minimum 2)
+            </div>
           </div>
         </div>
       </div>

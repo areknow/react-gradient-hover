@@ -4,13 +4,12 @@
   position: relative;
   overflow: hidden;
   user-select: none;
-  background-color: var(--gradient-stop-2);
+  background-color: var(--gradient-colors, #4ecdc4);
 
   &--always-show {
-    background-image: radial-gradient(
-      circle at 50% 50%,
-      var(--gradient-stop-1),
-      var(--gradient-stop-2)
+    background-image: var(
+      --gradient-background,
+      radial-gradient(circle at 50% 50%, #ff6b6b, #4ecdc4)
     );
   }
 
@@ -26,10 +25,9 @@
     content: "";
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(
-      circle at var(--gradient-x, 50%) var(--gradient-y, 50%),
-      var(--gradient-stop-1),
-      var(--gradient-stop-2)
+    background-image: var(
+      --gradient-background,
+      radial-gradient(circle at 50% 50%, #ff6b6b, #4ecdc4)
     );
     pointer-events: none;
   }
