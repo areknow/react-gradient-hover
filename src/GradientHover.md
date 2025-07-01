@@ -23,7 +23,7 @@ Use the controls below to dynamically experiment with all the component props:
 function InteractiveDemo() {
   const [color1, setColor1] = React.useState('#0dc3e7');
   const [color2, setColor2] = React.useState('#fc42ff');
-  const [animationSpeed, setAnimationSpeed] = React.useState(0.01);
+  const [animationSpeed, setAnimationSpeed] = React.useState(0.05);
   const [transitionDuration, setTransitionDuration] = React.useState(1);
   const [shouldAlwaysShowGradient, setShouldAlwaysShowGradient] = React.useState(true);
 
