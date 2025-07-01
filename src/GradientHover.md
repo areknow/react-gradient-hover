@@ -24,33 +24,15 @@ import { GradientHover } from "react-gradient-hover";
 
 ## Multiple Gradient Colors
 
-The component now supports any number of gradient colors:
+The component supports multiple color stops. The more colors added, the higher the performance cost.
 
 ```jsx
-<>
-  <GradientHover
-    colors={["#E95A45", "#FCF2C1", "#539C99"]}
-    style={{ marginBottom: 10 }}
-  >
-    <div style={{ padding: 20 }}>Three-color gradient</div>
-  </GradientHover>
-
-  <GradientHover
-    colors={[
-      "#ef5350",
-      "#f48fb1",
-      "#7e57c2",
-      "#2196f3",
-      "#26c6da",
-      "#43a047",
-      "#eeff41",
-      "#f9a825",
-      "#ff5722",
-    ]}
-  >
-    <div style={{ padding: 20 }}>Multi-color gradient</div>
-  </GradientHover>
-</>
+<GradientHover
+  colors={["#E95A45", "#FCF2C1", "#539C99"]}
+  style={{ marginBottom: 10 }}
+>
+  <div style={{ padding: 20 }}>Three-color gradient</div>
+</GradientHover>
 ```
 
 ## Interactive Playground
