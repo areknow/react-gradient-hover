@@ -1,7 +1,3 @@
-# GradientHover
-
-The main component that creates the interactive gradient hover effect.
-
 ## Basic Usage
 
 ```jsx
