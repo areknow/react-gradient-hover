@@ -50,17 +50,6 @@ module.exports = {
       },
     ],
   },
-  // sections: [
-  //   {
-  //     name: "Introduction",
-  //     content: "docs/Introduction.md",
-  //   },
-  //   {
-  //     name: "Components",
-  //     components: "src/GradientHover.tsx",
-  //     content: "src/GradientHover.md",
-  //   },
-  // ],
   theme: {
     color: {
       link: "#4ecdc4",
