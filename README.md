@@ -6,7 +6,7 @@ A high-performance React component that creates an elegant, interactive gradient
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Documentation-blue)](https://areknow.github.io/react-gradient-hover/)
 
-[Documentation guide](areknow.github.io/react-gradient-hover/)
+[Documentation guide](https://areknow.github.io/react-gradient-hover/)
 
 ## Overview
 
