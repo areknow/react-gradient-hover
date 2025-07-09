@@ -1,6 +1,6 @@
 # React Gradient Hover
 
-A high-performance React component that creates an elegant, interactive gradient effect that follows cursor movement. Perfect for creating engaging hover states and modern UI elements.
+A high-performance React component that creates an elegant, interactive gradient effect that follows cursor movement. Perfect for creating engaging interactive hover states.
 
 [![npm version](https://img.shields.io/npm/v/react-gradient-hover.svg)](https://www.npmjs.com/package/react-gradient-hover)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -20,7 +20,6 @@ React Gradient Hover enhances your UI with smooth, performant gradient animation
 - 🎯 Customizable animation speed and transition duration
 - 📱 Responsive design with automatic resizing
 - 🔧 TypeScript support with comprehensive type definitions
-- 🎪 Smooth return-to-center animation
 
 ## Installation
 
@@ -138,9 +137,7 @@ Ensure your target browsers support these features or include appropriate polyfi
 
 ### Documentation
 
-View the interactive documentation and examples at [https://areknow.github.io/react-gradient-hover/](https://areknow.github.io/react-gradient-hover/)
-
-To run the documentation locally:
+View the interactive documentation and examples:
 
 ```bash
 npm run styleguide
